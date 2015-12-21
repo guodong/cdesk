@@ -1,0 +1,101 @@
+<section class="content-header">
+	<h1>
+		Vms <small><a style="cursor: pointer;" class=""
+			data-toggle="modal" data-target="#compose-modal"><i
+				class="fa fa-plus"></i> Create Vm</a></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+		<li class="active">Vms</li>
+	</ol>
+</section>
+<table class="table table-hover">
+	<tr>
+		<th>NAME</th>
+		<th>CPU</th>
+		<th>MEMORY</th>
+		<th>STATE</th>
+		<th>OPERATIONS</th>
+	</tr>
+	<tr ng-repeat="v in vms">
+		<td ng-bind="v.name"></td>
+		<td ng-bind="v.cpu"></td>
+		<td ng-bind="v.memory"></td>
+		<td><span ng-show="v.state==1" class="label label-success">Running</span><span
+			ng-show="v.state==5" class="label label-danger">Stopped</span></td>
+		<td><div class="btn-group">
+				<button title="start" ng-class="{disabled:v.state==1}" type="button"
+					class="btn btn-success btn-sm">
+					<i class="fa fa-fw fa-play"></i>
+				</button>
+				<button title="shut down" ng-class="{disabled:v.state==5}" type="button"
+					class="btn btn-danger btn-sm">
+					<i class="fa fa-fw fa-power-off"></i>
+				</button>
+				<button title="restart" ng-class="{disabled:v.state==1}" type="button"
+					class="btn btn-info btn-sm">
+					<i class="fa fa-fw fa-refresh"></i>
+				</button>
+			</div></td>
+	</tr>
+</table>
+<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Create Vm</h4>
+			</div>
+			<form action="#" method="post" name="form">
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Name:</label> <input name="name" type="text"
+							ng-model="vm.name" class="form-control" placeholder="Vm Name">
+					</div>
+					<div class="form-group">
+						<label>Cpu:</label> <select class="form-control" ng-model="vm.cpu">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Memory:</label> <select class="form-control"
+							ng-model="vm.memory">
+							<option value="512">512MB</option>
+							<option value="1024">1024MB</option>
+							<option value="2048">2GB</option>
+							<option value="4096">4GB</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>OS:</label> <select class="form-control" ng-model="vm.os">
+							<option value="win7">windows 7</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Port:</label> <input name="name" type="text"
+							ng-model="vm.port" class="form-control"
+							placeholder="Vm Desktop Port" value="5900">
+					</div>
+				</div>
+				<div class="modal-footer clearfix">
+
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<i class="fa fa-times"></i> Cancle
+					</button>
+					<button type="button" ng-click="save()"
+						class="btn btn-primary pull-left" ng-disabled="form.$invalid">
+						<i class="fa fa-check"></i> Create
+					</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

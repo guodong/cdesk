@@ -1,0 +1,60 @@
+<section class="content-header">
+	<h1>
+		Servers <small><a style="cursor: pointer;" class="" data-toggle="modal"
+			data-target="#compose-modal"><i class="fa fa-plus"></i> Add Server</a></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+		<li class="active">Servers</li>
+	</ol>
+</section>
+<table class="table table-hover">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Ip</th>
+		<th>Status</th>
+		<th>Addtime</th>
+	</tr>
+	<tr ng-repeat="v in servers">
+		<td ng-bind="v.id"></td>
+		<td ng-bind="v.name"></td>
+		<td ng-bind="v.ip"></td>
+		<td>ok</td>
+		<td ng-bind="v.created_at"></td>
+	</tr>
+</table>
+<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Create Vm</h4>
+			</div>
+			<form action="#" method="post" name="form">
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Name:</label> <input name="name" type="text" ng-model="server.name" required
+							class="form-control" placeholder="Name">
+					</div>
+					<div class="form-group">
+						<label>Ip:</label> <input name="ip" type="text" ng-model="server.ip"
+							class="form-control" placeholder="IP" required>
+					</div>
+				</div>
+				<div class="modal-footer clearfix">
+
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<i class="fa fa-times"></i> Cancle
+					</button>
+					<button type="button" ng-click="save()" class="btn btn-primary pull-left" ng-disabled="form.$invalid"><i class="fa fa-check"></i> Add</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
